@@ -1,0 +1,5 @@
+1) In all generalized algorithms and functions taking iterators , place a static_assert / some check to ensure that iterator value type 
+can impicitely converted to type that function/piece of code is supposed to be working on . 
+look into is_convertible for this
+
+2) Add type traits is_instance_of template function to ensure and give useful errors in case given algorithm is called on wrong type
