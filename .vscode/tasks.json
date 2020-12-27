@@ -1,0 +1,242 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "shell",
+            "label": "build & run",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-Wextra",
+                "-Wfloat-equal",
+                "-Wconversion",
+                "-Wlogical-op",
+                "-Wduplicated-cond",
+                "-O2",
+                "-std=c++14",
+                "-pedantic",
+                "-I${workspaceFolder}/include",
+                "${relativeFile}",
+                "-o",
+                "build/${fileBasenameNoExtension}",
+                "&&",
+                "build/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "type": "process",
+            "label": "build",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-Wextra",
+                "-Wfloat-equal",
+                "-Wconversion",
+                "-Wlogical-op",
+                "-Wduplicated-cond",
+                "-O2",
+                "-std=c++14",
+                "-pedantic",
+                "-I${workspaceFolder}/include",
+                "${relativeFile}",
+                "-o",
+                "build/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "build & run with input",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-Wextra",
+                "-Wfloat-equal",
+                "-Wconversion",
+                "-Wlogical-op",
+                "-Wduplicated-cond",
+                "-O2",
+                "-std=c++14",
+                "-pedantic",
+                "-I${workspaceFolder}/include",
+                "${relativeFile}",
+                "-o",
+                "build/${fileBasenameNoExtension}",
+                "&&",
+                "build/${fileBasenameNoExtension}",
+                "<",
+                "build/input.txt"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$gcc",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "run with input",
+            "command": "",
+            "args": [
+                "./build/${fileBasenameNoExtension}",
+                "<",
+                "./build/input.txt"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "type": "process",
+            "label": "run",
+            "command": "./build/${fileBasenameNoExtension}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "type": "process",
+            "label": "clang-tidy",
+            "command" : "clang-tidy",
+            "args": [
+                "--quiet",
+                "${relativeFile}",
+                "--",
+                "-I${workspaceFolder}/include"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher" : {
+                "owner" : "cpp",
+                "fileLocation" : "absolute",
+                "pattern" : {
+                    "regexp" : "^(.*):(\\d+):(\\d+):\\s+(warning|error): (.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }           
+        },
+        {
+            "type": "process",
+            "label": "clang-tidy --fix",
+            "command" : "clang-tidy",
+            "args": [
+                "--quiet",
+                "--fix",
+                "${relativeFile}",
+                "--",
+                "-I${workspaceFolder}/include"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher" : {
+                "owner" : "cpp",
+                "fileLocation" : "absolute",
+                "pattern" : {
+                    "regexp" : "^(.*):(\\d+):(\\d+):\\s+(warning|error): (.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }           
+        }
+    ]
+}
