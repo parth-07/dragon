@@ -1,3 +1,12 @@
+/**
+ * Algorithm to solve given set of congruence equations 
+ * in one variable, that is, Solve:
+ * x*a1 = 1 (mod m1)
+ * x*a2 = 1 (mod m2)
+ * .
+ * .
+ * x*aN = 1 (mod mN)
+ */
 #ifndef DRAGON_NUMBER_THEORY_CHINESE_REMAINDER_THEOREM_HPP
 #define DRAGON_NUMBER_THEORY_CHINESE_REMAINDER_THEOREM_HPP
 #include "mod-inverse.hpp"

@@ -1,9 +1,17 @@
+/**
+ * Algorithms for getting totient of a number
+ * or of range of numbers from 1 to N,
+ *
+ */
 #ifndef DRAGON_NUMBER_THEORY_EULER_TOTIENT_CPP
 #define DRAGON_NUMBER_THEORY_EULER_TOTIENT_CPP
 #include <iostream>
 #include <vector>
 
 namespace dragon {
+/**
+ * Time complexity: O(sqrt(num))
+ */
 template <typename ValueT> auto get_euler_totient(ValueT num) {
   ValueT res = num;
   for (ValueT i = 2; i * i <= num; ++i) {
@@ -17,6 +25,11 @@ template <typename ValueT> auto get_euler_totient(ValueT num) {
   return res;
 }
 
+/**
+ * initialize totients of numbers in range 1 to N,
+ *
+ * Time complexity: O(Nlg(lgN))
+ */
 template <typename ValueT> class EulerTotient {
 public:
   using ValueType = ValueT;
@@ -26,14 +39,15 @@ private:
   template <typename T> using Sequence = std::vector<T>;
 
 public:
+  // special member functions declared as default
   EulerTotient() = default;
   EulerTotient(const EulerTotient&) = default;
   EulerTotient(EulerTotient&&) noexcept = default;
   EulerTotient& operator=(const EulerTotient&) = default;
   EulerTotient& operator=(EulerTotient&&) noexcept = default;
   ~EulerTotient() = default;
-
-  EulerTotient(SizeType scan_limit) { build(scan_limit); }
+   
+  explicit EulerTotient(SizeType scan_limit) { build(scan_limit); }
 
   auto operator[](SizeType num) const noexcept { return m_totients[num]; }
 

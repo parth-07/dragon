@@ -1,3 +1,7 @@
+/**
+ * Good old Sieve of eratosthenes implementation 
+ * Time complexity: O(Nlg(lg(N))
+ */
 #ifndef DRAGON_NUMBER_THEORY_SIEVE_HPP
 #define DRAGON_NUMBER_THEORY_SIEVE_HPP
 #include <bits/stdc++.h>
@@ -13,17 +17,15 @@ public:
   using ValueType = T;
 
 public:
+//Special member functions declared as default
   Sieve() = default;
-  Sieve(SizeType scan_limit);
-
   Sieve(const Sieve&) = default;
   Sieve(Sieve&&) noexcept = default;
-
   Sieve& operator=(const Sieve&) = default;
   Sieve& operator=(Sieve&&) noexcept = default;
-
   ~Sieve() = default;
 
+  Sieve(SizeType scan_limit);
   void build(SizeType scan_limit);
 
 public:
