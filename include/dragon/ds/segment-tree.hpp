@@ -1,3 +1,11 @@
+/**
+ * Efficient, easy to use and generic implementation for Segment tree without 
+ * lazy updates
+ * Time complexity: 
+ *  building - O(NlgN)
+ *  querying - O(lgN)
+ *  updating - O(lgN)
+ */
 #ifndef DRAGON_DS_SEGMENT_TREE_HPP
 #define DRAGON_DS_SEGMENT_TREE_HPP
 #include <cmath>
@@ -5,6 +13,16 @@
 #include <vector>
 namespace dragon {
 
+/**
+ * 
+ * @param ValueT - type of values in source sequence
+ * @param BinaryFunctor - type of functor object which will
+ * provide query function of segment tree
+ * 
+ * This data structure provides interface and implementations for 
+ * efficiently building, querying and updating given data.
+ * 
+ */
 template <typename ValueT, typename BinaryFunctor> class SegmentTree {
 private:
   mutable BinaryFunctor m_query_functor;
@@ -20,13 +38,17 @@ private:
   template <typename T> using Sequence = std::vector<T>;
 
 public:
-  SegmentTree() = default;
+// Default special member functions
   SegmentTree(const SegmentTree&) = default;
   SegmentTree(SegmentTree&&) noexcept = default;
   SegmentTree& operator=(const SegmentTree&) = default;
   SegmentTree& operator=(SegmentTree&&) noexcept = default;
   ~SegmentTree() = default;
-
+/**
+ * identity_value is a value which satisfy, f(a,identity_value) = a,
+ * where `f` is the query function.
+ * As of now, identity_value can only be provided while constructing the object
+ */
   SegmentTree(SourceValueType identity_value);
 
   template <typename ForwardIterator>
@@ -41,25 +63,25 @@ public:
 
   template <typename Container> void build(const Container& source);
 
-  auto query(SizeType l, SizeType r);
-
+  auto query(SizeType l, SizeType r) const;
   void update(SizeType index, SourceValueType value);
+  void clear();
 
 private:
-  SizeType get_left_child_index(SizeType index) { return (index << 1) + 1; }
-
-  SizeType get_right_child_index(SizeType index) { return (index + 1) << 1; }
+  SizeType get_left_child_index(SizeType index) const { return (index << 1) + 1; }
+  SizeType get_right_child_index(SizeType index) const { return (index + 1) << 1; }
+  
   void build_base(SizeType index, SizeType first, SizeType last);
   auto query_base(SizeType index, SizeType first, SizeType last, SizeType l,
-                  SizeType r);
+                  SizeType r) const;
   void update_base(SizeType index, SizeType first, SizeType last,
                    SizeType source_index, SourceValueType value);
 
 private:
+  constexpr static SizeType one = static_cast<SizeType>(1);
   Sequence<QueryReturnType> m_nodes;
   Sequence<SourceValueType> m_source;
-  SourceValueType m_identity_value;
-  constexpr static SizeType one = static_cast<SizeType>(1);
+  const SourceValueType m_identity_value;
 };
 
 template <typename ValueT, typename BinaryFunctor>
@@ -122,7 +144,7 @@ void SegmentTree<ValueT, BinaryFunctor>::build_base(SizeType index,
 }
 
 template <typename ValueT, typename BinaryFunctor>
-auto SegmentTree<ValueT, BinaryFunctor>::query(SizeType l, SizeType r) {
+auto SegmentTree<ValueT, BinaryFunctor>::query(SizeType l, SizeType r) const {
   return query_base(0, 0, m_source.size() - 1, l, r);
 }
 
@@ -130,7 +152,7 @@ template <typename ValueT, typename BinaryFunctor>
 auto SegmentTree<ValueT, BinaryFunctor>::query_base(SizeType index,
                                                     SizeType first,
                                                     SizeType last, SizeType l,
-                                                    SizeType r) {
+                                                    SizeType r) const {
   if (r < first || l > last)
     return m_identity_value;
   if (l <= first && r >= last)
@@ -164,10 +186,16 @@ void SegmentTree<ValueT, BinaryFunctor>::update_base(SizeType index,
   auto mid = first + (last - first) / 2;
   auto left_child_i = get_left_child_index(index);
   auto right_child_i = get_right_child_index(index);
-  update_base(left_child_i, first, mid);
-  update_base(right_child_i, mid + 1, last);
+  update_base(left_child_i, first, mid,source_index,value);
+  update_base(right_child_i, mid + 1, last,source_index,value);
   m_nodes[index] =
       m_query_functor(m_nodes[left_child_i], m_nodes[right_child_i]);
+}
+
+template<typename ValueT,typename BinaryFunctor>
+void SegmentTree<ValueT,BinaryFunctor>::clear() {
+  m_source.clear();
+  m_nodes.clear();
 }
 } // namespace dragon
 
