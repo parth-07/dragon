@@ -1,4 +1,4 @@
-Checks: '-*,readability-identifier-naming,cppcoreguidelines-*,clang-analyzer-*,performance-*,llvm-*'
+Checks: '-*,readability-identifier-naming,cppcoreguidelines-*,clang-analyzer-*,performance-*,llvm-*,-cppcoreguidelines-non-private-member-variables-in-classes'
 HeaderFilterRegex: .*
 CheckOptions:
     - {key: readability-identifier-naming.NamespaceCase,            value: lower_case}
