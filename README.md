@@ -17,7 +17,7 @@ This library is dedicated towards data structures and algorithms that are useful
 - Clone the repository (and star it if you like it)
 - include header files of the data structures and algorithms you need to use in your code using `#include "path/to/required/header/files"`
 - path of header file in _include "header_file"_ should be relative to _path/to/cloned/ds-and-algos/repo/include
-- Include `-Ipath/to/cloned/ds-and-algos/repo/include` flag while compiling files, for instance, `g++ hello-world.cpp -I -Ipath/to/cloned/ds-and-algos/repo/include`
+- Include `-Ipath/to/cloned/ds-and-algos/repo/include` flag while compiling files, for instance, `g++ hello-world.cpp -Ipath/to/cloned/ds-and-algos/repo/include`
 - That's it .
 ### Library
 
