@@ -21,7 +21,7 @@ public:
   using QueryReturnType = decltype(
       m_query_functor(std::declval<ValueType>(), std::declval<ValueType>()));
   using QueryFunctorType = BinaryFunctor;
-  using SizeType = size_t;
+  using SizeType = std::size_t;
 
 private:
   template <typename T> using Sequence = std::vector<T>;

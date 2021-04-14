@@ -33,7 +33,7 @@ template <typename ValueT> auto get_euler_totient(ValueT num) {
 template <typename ValueT> class EulerTotient {
 public:
   using ValueType = ValueT;
-  using SizeType = size_t;
+  using SizeType = std::size_t;
 
 private:
   template <typename T> using Sequence = std::vector<T>;

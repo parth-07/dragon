@@ -37,7 +37,7 @@ auto longest_increasing_subsequence_length(const Container& container) {
 template <class ForwardIterator>
 auto longest_increasing_subsequence_length(ForwardIterator first,ForwardIterator last) {
   using ValueType = typename std::iterator_traits<ForwardIterator>::value_type;  //NOLINT
-  using SizeType = size_t;
+  using SizeType = std::size_t;
 
   SizeType sz = std::distance(first,last);
   std::vector<ValueType> tails(
