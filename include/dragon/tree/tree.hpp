@@ -10,18 +10,20 @@
 #define DRAGON_TREE_TREE_HPP
 
 #include <iostream>
-#include <vector>
-#include <map>
 #include <limits>
+#include <map>
+#include <vector>
 
 namespace dragon {
   /**
+   * Generic data structure to easily 
+   * 
    * @param ValueT type of value of tree nodes
    * @param EdgeValueT type of weight of tree edges
    */
 template <typename ValueT, typename EdgeValueT = int> class Tree {
 public:
-  using SizeType = size_t;
+  using SizeType = std::size_t;
   using ValueType = ValueT;
   using EdgeValueType = EdgeValueT;
   using AdjacencyStructureType = std::map<SizeType, EdgeValueType>;
@@ -52,7 +54,7 @@ public:
     ValueType value;
     AdjacencyStructureType edges;
     // NOLINTNEXTLINE
-    SizeType parent, depth, distance;
+    SizeType parent=npos, depth=npos, distance=npos;
     Color color = Color::white;
     Color color_for_impl = Color::white;
   };
@@ -71,8 +73,9 @@ public:
   ~Tree() = default;
 
 // Non-default constructors
-  Tree(SizeType sz = 0, SizeType root = 0)
-      : m_nodes(decltype(m_nodes)(sz)), m_root(root){};
+  Tree(SizeType sz = 0, SizeType root = 0) {
+    build(sz, root);
+  };
 
 // [] operator is overloaded to use tree[i] to 
 // access i th node of the tree
@@ -92,7 +95,7 @@ public:
                            EdgeValueType weight = 1);
   void remove_directed_edge(SizeType u_i, SizeType v_i);
   void remove_undirected_edge(SizeType u_i, SizeType v_i);
-  SizeType get_root() const {
+  SizeType root() const {
     return m_root;
   }
   
@@ -109,7 +112,7 @@ public:
 
 private:
   NodeSequenceType m_nodes;
-  SizeType m_root;
+  SizeType m_root{};
 public:
   const NodeSequenceType& nodes= m_nodes;
 };
