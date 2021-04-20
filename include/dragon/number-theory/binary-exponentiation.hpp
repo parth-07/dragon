@@ -9,8 +9,7 @@
 namespace dragon {
 
 /**
- * Time complexity: O(lg(b))
- * returns (a^b)%m
+ * Computes (a^b)%m in logarithmic time.
  */
 template <typename T>
 inline constexpr T binary_exponentiation(T a, T b, T m) noexcept {
@@ -25,8 +24,7 @@ inline constexpr T binary_exponentiation(T a, T b, T m) noexcept {
 }
 
 /**
- * Time complexity: O(lg(b))
- * returns a^b
+ * Computes a^b in logarithmic time.
  */
 template <typename T>
 inline constexpr T binary_exponentiation(T a, T b) noexcept {

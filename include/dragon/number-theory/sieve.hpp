@@ -7,6 +7,14 @@
 #include <bits/stdc++.h>
 
 namespace dragon {
+
+/**
+ * Uses sieve of eratosthenes algorithm to compute prime numbers
+ * in range [1,N] and information about whether number i 
+ * in range [1,N] is prime or not.
+ * 
+ * @param T - T should be big enough to store largest prime number in range [1,N],
+ */
 template <typename T = long long int> class Sieve {
 
 private:
@@ -30,16 +38,24 @@ public:
 
 public:
   Sequence<bool> is_prime;
-  Sequence<T> prime;
+  // primes[i] returns the i'th prime number.
+  Sequence<T> primes;
 
 private:
   SizeType m_scan_limit;
 };
-
+/**
+ * Compute primes and is_prime members to provide information about 
+ * primes in range [1,scan_limit]
+ */
 template <typename T> Sieve<T>::Sieve(SizeType scan_limit) {
   build(scan_limit);
 }
 
+/**
+ * Compute primes and is_prime members to provide information about 
+ * primes in range [1, scan_limit].
+ */
 template <typename T> void Sieve<T>::build(SizeType scan_limit) {
   m_scan_limit = scan_limit;
 

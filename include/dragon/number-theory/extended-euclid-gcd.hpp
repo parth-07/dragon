@@ -1,12 +1,18 @@
-/**
- * Algorithm for finding solution of a*x + b*y = gcd(a,b)
- * Function returns gcd(a,b) and assign solution of the 
- * equation to passed variables x and y 
- */
 #ifndef DRAGON_NUMBER_THEORY_EXTENDED_EUCLID_GCD_HPP
 #define DRAGON_NUMBER_THEORY_EXTENDED_EUCLID_GCD_HPP
 #include <bits/stdc++.h>
 namespace dragon {
+/**
+ * Computes solution to the equation and assigns solution 
+ * inplace to the x and y function arguments
+ * 
+ * ```
+ * a*x + b*y = gcd(a, b)
+ * ```
+ * 
+ * @return gcd(a, b)
+ * 
+ */
 template <typename T, typename U>
 constexpr T gcd(T a, T b, U& x, U& y) noexcept {
   if (!b) {

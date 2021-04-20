@@ -10,7 +10,7 @@
 namespace dragon {
 
 /**
- * Time complexity: Same as euclid gcd algorithm,
+ * Computes mod inverse of a wrt m.
  * 
  */
 template <typename T>
@@ -24,8 +24,8 @@ constexpr T mod_inverse_using_extended_euclid(T a, T m) noexcept {
 }
 
 /**
- * Time complexity: O(lg(m))
- * Can only be used if a and m are coprime, that is gcd(a,m)=1
+ * Computes mod inverse of a wrt m in logarithmic time.
+ * Can only be used if a and m are coprime, that is, gcd(a,m)=1
  */
 template <typename T>
 constexpr T mod_inverse_using_binary_exp(T a, T m) noexcept {

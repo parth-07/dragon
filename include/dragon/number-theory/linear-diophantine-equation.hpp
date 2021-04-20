@@ -16,7 +16,14 @@ namespace dragon {
 using std::pair;
 
 /**
- * time complexity: Same as of Euclid gcd algorithm
+ * Compute solution for linear equation in 2 variables and 
+ * assigns solution, if it exists, inplace to the x and y 
+ * function arguments
+ * 
+ * ```
+ * a*x + b*y = c
+ * ```
+ * @return true, if solution exist, otherwise false
  */
 template <typename T, typename U>
 constexpr bool find_linear_diophantine_equation_solution(T a, T b, T c, U& x,
