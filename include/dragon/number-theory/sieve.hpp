@@ -13,7 +13,7 @@ namespace dragon {
  * in range [1,N] and information about whether number i 
  * in range [1,N] is prime or not.
  * 
- * @param T - T should be big enough to store largest prime number in range [1,N],
+ * @param T should be big enough to store largest prime number in range [1,N],
  */
 template <typename T = long long int> class Sieve {
 
@@ -60,7 +60,7 @@ template <typename T> void Sieve<T>::build(SizeType scan_limit) {
   m_scan_limit = scan_limit;
 
   is_prime.clear();
-  prime.clear();
+  primes.clear();
 
   is_prime.resize(scan_limit + 1, 1);
 
@@ -79,7 +79,7 @@ template <typename T> void Sieve<T>::build(SizeType scan_limit) {
 
   for (SizeType i = 0; i <= scan_limit; ++i) {
     if (is_prime[i])
-      prime.push_back(static_cast<ValueType>(i));
+      primes.push_back(static_cast<ValueType>(i));
   }
 }
 } // namespace dragon

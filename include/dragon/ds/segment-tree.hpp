@@ -1,27 +1,19 @@
-/**
- * Efficient, easy to use and generic implementation for Segment tree without 
- * lazy updates
- * Time complexity: 
- *  building - O(NlgN)
- *  querying - O(lgN)
- *  updating - O(lgN)
- */
 #ifndef DRAGON_DS_SEGMENT_TREE_HPP
 #define DRAGON_DS_SEGMENT_TREE_HPP
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <type_traits>
 namespace dragon {
 
-/**
- * 
- * @param ValueT - type of values in source sequence
- * @param BinaryFunctor - type of functor object which will
- * provide query function of segment tree
- * 
- * This data structure provides interface and implementations for 
- * efficiently building, querying and updating given data.
- * 
+/** 
+ * Generic segment tree data structure without lazy propagation.
+ * Offers computing range queries and doing updates in logarithmic time.
+ * Query function should be commutative and associative.
+ * Initial building of segment tree takes O(NlgN) time.
+ *
+ * @param ValueT type of data
+ * @param BinaryFunctor query functor class
  */
 template <typename ValueT, typename BinaryFunctor> class SegmentTree {
 private:
@@ -29,8 +21,7 @@ private:
 
 public:
   using SourceValueType = ValueT;
-  using QueryReturnType =
-      decltype(m_query_functor(std::declval<ValueT>(), std::declval<ValueT>()));
+  using QueryReturnType = std::result_of_t<BinaryFunctor(ValueT, ValueT)>;
   using QueryFunctorType = BinaryFunctor;
   using SizeType = std::size_t;
 
@@ -38,17 +29,13 @@ private:
   template <typename T> using Sequence = std::vector<T>;
 
 public:
-// Default special member functions
+  // Default special member functions
   SegmentTree(const SegmentTree&) = default;
   SegmentTree(SegmentTree&&) noexcept = default;
   SegmentTree& operator=(const SegmentTree&) = default;
   SegmentTree& operator=(SegmentTree&&) noexcept = default;
   ~SegmentTree() = default;
-/**
- * identity_value is a value which satisfy, f(a,identity_value) = a,
- * where `f` is the query function.
- * As of now, identity_value can only be provided while constructing the object
- */
+
   SegmentTree(SourceValueType identity_value);
 
   template <typename ForwardIterator>
@@ -65,6 +52,7 @@ public:
 
   auto query(SizeType l, SizeType r) const;
   void update(SizeType index, SourceValueType value);
+  
   void clear();
 
 private:
@@ -84,6 +72,12 @@ private:
   const SourceValueType m_identity_value;
 };
 
+/**
+ * `identity_value` is a value which satisfies, query(a, identity_value) = a.
+ * `identity_value` can only be provided during object construction.
+ * 
+ * @param identity_value 
+ */
 template <typename ValueT, typename BinaryFunctor>
 SegmentTree<ValueT, BinaryFunctor>::SegmentTree(SourceValueType identity_value)
     : m_identity_value(identity_value) {}
@@ -96,6 +90,13 @@ SegmentTree<ValueT, BinaryFunctor>::SegmentTree(SourceValueType identity_value,
   build(container);
 }
 
+/**
+ * Construct segment tree from iterator range
+ * 
+ * @param first - begin iterator 
+ * @param last - end iterator
+ * 
+ */
 template <typename ValueT, typename BinaryFunctor>
 template <typename ForwardIterator>
 SegmentTree<ValueT, BinaryFunctor>::SegmentTree(SourceValueType identity_value,
@@ -104,13 +105,23 @@ SegmentTree<ValueT, BinaryFunctor>::SegmentTree(SourceValueType identity_value,
     : m_identity_value(identity_value) {
   build(first, last);
 }
-
+/**
+ * Builds segment tree from sequential container
+ * 
+ * @param container sequential container
+ */
 template <typename ValueT, typename BinaryFunctor>
 template <typename Container>
 void SegmentTree<ValueT, BinaryFunctor>::build(const Container& container) {
   build(begin(container), end(container));
 }
 
+/**
+ * Builds segment tree from iterator range
+ * 
+ * @param first begin iterator
+ * @param last end iterator
+ */
 template <typename ValueT, typename BinaryFunctor>
 template <typename ForwardIterator>
 void SegmentTree<ValueT, BinaryFunctor>::build(ForwardIterator first,
@@ -143,6 +154,10 @@ void SegmentTree<ValueT, BinaryFunctor>::build_base(SizeType index,
       m_query_functor(m_nodes[left_child_i], m_nodes[right_child_i]);
 }
 
+/**
+ * Query the array in inclusive range [l,r] in logarithmic time.
+ * Range should be 0-index based.
+ */
 template <typename ValueT, typename BinaryFunctor>
 auto SegmentTree<ValueT, BinaryFunctor>::query(SizeType l, SizeType r) const {
   return query_base(0, 0, m_source.size() - 1, l, r);
@@ -164,6 +179,12 @@ auto SegmentTree<ValueT, BinaryFunctor>::query_base(SizeType index,
   return m_query_functor(l_res, r_res);
 }
 
+/**
+ * Updates element at given index of the array in logarithmic time.
+ * 
+ * @param index index of element to update
+ * @param value new value 
+ */
 template <typename ValueT, typename BinaryFunctor>
 void SegmentTree<ValueT, BinaryFunctor>::update(SizeType index,
                                                 SourceValueType value) {

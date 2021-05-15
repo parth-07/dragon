@@ -1,8 +1,3 @@
-/**
- * Functions to compute and returns length of strictly increasing subsequence.
- * Input sequence will not be modified.
- * Time complexity: O(NlgN) 
- */
 #ifndef DRAGON_ALGORITHMS_LONGEST_INCREASING_SUBSEQUENCE_HPP
 #define DRAGON_ALGORITHMS_LONGEST_INCREASING_SUBSEQUENCE_HPP
 
@@ -19,8 +14,10 @@ template<class Container>
 auto longest_increasing_subsequence_length(const Container& container);
 
 /**
- * @param container container should be a sequence
- * @return length of strictly increasing subsequence
+ * Compute length of strictly increasing subsequence.
+ * 
+ * @param container sequence container
+ * @return length of longest strictly increasing subsequence
  * 
  */
 template<class Container>
@@ -29,9 +26,11 @@ auto longest_increasing_subsequence_length(const Container& container) {
 }
 
 /**
+ * Compute length of strictly increasing subsequence.
+ * 
  * @param first iterator pointing to beginning of the sequence
  * @param last iterator pointing to one past the end of the sequence
- * @return length of strictly increasing subsequence
+ * @return length of longest strictly increasing subsequence
  * 
  */
 template <class ForwardIterator>
