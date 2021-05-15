@@ -11,5 +11,5 @@ TEST_CASE("prime-factorization", "[factorization]") {
 
 TEST_CASE("factors", "[factorization]") {
   int n = 21;
-  REQUIRE_THAT(dragon::cal_factors(n), Equals(std::vector<int>{1, 3, 7, 21}));
+  REQUIRE_THAT(dragon::cal_factors(n), Equals(std::vector<int>{1, 3, 7, 21, 23}));
 }
