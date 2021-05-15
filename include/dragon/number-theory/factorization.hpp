@@ -11,7 +11,7 @@ namespace dragon
  * of the number in non-descending order.
  */
 template<typename T>
-auto cal_prime_factors(T n) {
+auto cal_prime_factorization(T n) {
   std::vector<T> pfs;
   for (T i=2; i*i <= n; ++i) { 
     while(n%i == 0) {
@@ -28,7 +28,7 @@ auto cal_prime_factors(T n) {
  * Computes factors of a number in O(sqrt(n)).
  * 
  * @returns vector containing all the factors in 
- * non descending order.
+ * ascending order.
  */
 template<typename T>
 auto cal_factors(T n) {
@@ -39,6 +39,9 @@ auto cal_factors(T n) {
       factors.push_back(i);
       factors_after_sqrt.push_back(n/i);
     }
+  }
+  if (factors_after_sqrt.back() == factors.back()) {
+    factors_after_sqrt.pop_back();
   }
   while(!factors_after_sqrt.empty()) {
     factors.push_back(factors_after_sqrt.back());
