@@ -4,7 +4,7 @@
 namespace dragon {
 /**
  * Computes solution to the equation and assigns solution 
- * inplace to the x and y function arguments
+ * inplace to the x and y arguments
  * 
  * ```
  * a*x + b*y = gcd(a, b)
