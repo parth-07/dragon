@@ -6,7 +6,7 @@ namespace dragon {
 /**
  * Generic sparse table data structure.
  * Offers computing queries on interval in logarithmic time.
- * Query function should be associative, commutative and cannot be modified.
+ * Query function should be associative and commutative.
  * Initial building of sparse table takes NlgN time.
  * For idempotent queries, see SparseTableIdempotent.
  * 
