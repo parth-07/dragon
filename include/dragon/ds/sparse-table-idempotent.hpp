@@ -1,15 +1,3 @@
-/**
- * Easy to use and generalized template implementation of
- * sparse table. This class inherits from 
- * dragon::SparseTable<T,BinaryFunctor>, use this class only
- * when query function is idempotent, as this class assumes
- * provided query function is idempotent and is thus optimized
- * based on that assumption.
- * 
- * Query function is idempotent when f(a,a) = a for all values 'a',
- * where f is the query function 
- * 
- */
 #ifndef DRAGON_DS_SPARSE_TABLE_IDEMPOTENT_HPP
 #define DRAGON_DS_SPARSE_TABLE_IDEMPOTENT_HPP
 
@@ -18,6 +6,13 @@
 #include "dragon/ds/sparse-table.hpp"
 namespace dragon {
 
+/**
+ * Generic idempotent sparse table data structure.
+ * Offers computing queries on interval in constant time.
+ * Query function should be commutative, associative, idempotent and cannot be modified.
+ * Initial building of sparse table takes NlgN time.
+ * For non-idempotent queries, see SparseTable
+ */
 template <typename T, typename BinaryFunctor>
 class SparseTableIdempotent : public SparseTable<T, BinaryFunctor> {
 public:
@@ -33,22 +28,43 @@ public:
   SparseTableIdempotent& operator=(SparseTableIdempotent&&) noexcept = default;
   ~SparseTableIdempotent() = default;
 
-  // Non default constructors
+  /**
+   * Constructs sparse table from iterator range [first, last).
+   * @param first begin iterator
+   * @param last end iterator
+   */
   template <typename ForwardIterator>
   SparseTableIdempotent(ForwardIterator first, ForwardIterator last);
+
+  /**
+   * Constructs sparse table from container
+   * @param container
+   */
   template <typename Container>
   SparseTableIdempotent(const Container& container);
 
+  /**
+   * Builds sparse table from iterator range [first, last)
+   * @param first begin iterator
+   * @param last end iterator
+   */
   template <typename ForwardIterator>
   void build(ForwardIterator first, ForwardIterator last);
 
+  /**
+   * Builds sparse table from container
+   * @param container
+   */
   template <typename Container>
   void build(const Container&);
 
-  // Query range is inclusive = [l,r]
+  // Computes query on interval [l, r]
   auto query(SizeType l, SizeType r) const;
 
+  // Computes query on values (a, b)
   QueryReturnType query_function(SourceValueType a, SourceValueType b) const;
+
+  // Computes query on values (a, a)
   QueryReturnType query_function(SourceValueType a) const;
 
 private:

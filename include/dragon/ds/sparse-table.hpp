@@ -1,33 +1,23 @@
-/**
- * SparseTable is easy to use and generic template 
- * implementation of sparse table data structure. It provides
- * convenient and easy to use methods for 
- * building and querying the data. 
- * This implementation only supports O(lgN) query, even
- * for idempotent query functions. For idempotent query functions, 
- * O(1) query complexity can be achieved using SparseTableIdempotent class template .
- * 
- * Time complexity:
- *  building - O(NlgN)
- *  query - O(lgN)
- */
 #ifndef DRAGON_DS_SPARSE_TABLE_HPP
 #define DRAGON_DS_SPARSE_TABLE_HPP
 #include <bits/stdc++.h>
 
 namespace dragon {
-  /**
-   * @param T - type of value of data
-   * @param BinaryFunctor - type of query functor
-   */
+/**
+ * Generic sparse table data structure.
+ * Offers computing queries on interval in logarithmic time.
+ * Query function should be associative, commutative and cannot be modified.
+ * Initial building of sparse table takes NlgN time.
+ * For idempotent queries, see SparseTableIdempotent.
+ * 
+ * @param T type of data
+ * @param BinaryFunctor query functor class
+ */
 template <typename T, typename BinaryFunctor> class SparseTable {
-
-protected:
-  mutable BinaryFunctor m_query_functor;
 
 public:
   using QueryReturnType =
-      decltype(m_query_functor(std::declval<T>(), std::declval<T>()));
+      decltype(BinaryFunctor()(std::declval<T>(), std::declval<T>()));
   using SourceValueType = T;
   using QueryFunctorType = BinaryFunctor;
 
@@ -37,7 +27,7 @@ protected:
 
 public:
   using SizeType = typename Grid<QueryReturnType>::size_type;
-  //For consistency with STL
+  // For consistency with STL
   using size_type = SizeType;
 
 public:
@@ -49,28 +39,57 @@ public:
   SparseTable& operator=(SparseTable&&) noexcept = default;
   virtual ~SparseTable() = default;
 
-  // Non-default constructors
-  // Value of identity_value can only be specified during object construction
+  /**
+   * `identity_value` can only be specified during object construction and cannot 
+   * be modified.
+   * `identity_value` is a value that always satisfies, query(a, identity_value) = a
+   * @param identity_value 
+   */
   SparseTable(SourceValueType identity_value)
       : m_identity_value(identity_value) {}
 
+  /**
+   * Constructs sparse table from iterator range [first, last).
+   * @param identity_value 
+   * @param first begin iterator
+   * @param last end iterator
+   */
   template <typename ForwardIterator>
   SparseTable(SourceValueType identity_value, ForwardIterator first,
               ForwardIterator last);
 
+  /**
+   * Constructs sparse table of provided container.
+   * @param container
+   */
   template <typename Container>
   SparseTable(SourceValueType identity_value, Container container);
 
-  // Member functions
+  /**
+   * Builds sparse table from iterator range [first, last)
+   * @param first begin iterator
+   * @param last end iterator
+   */
   template <typename ForwardIterator>
   void build(ForwardIterator first, ForwardIterator last);
+
+  /**
+   * Builds sparse table from container.
+   * @param container
+   */
   template <typename Container> void build(Container container);
 
+  // Computes the query for interval [l, r]
   auto query(SizeType l, SizeType r) const;
 
+  // Reset the object 
   void clear();
+  
+  // Compute query on values (a, b)
   virtual QueryReturnType query_function(SourceValueType a,
                                          SourceValueType b) const;
+  
+  // Compute query on values (a, identity_value)
   virtual QueryReturnType query_function(SourceValueType a) const;
 
 
@@ -78,6 +97,7 @@ protected:
   static constexpr SizeType one = static_cast<SizeType>(1);
   static constexpr SizeType minus_one = static_cast<SizeType>(-1);
 
+  mutable BinaryFunctor m_query_functor;
   Grid<QueryReturnType> m_table;
   SourceValueType m_identity_value;
   SizeType m_exp_max;
