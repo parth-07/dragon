@@ -1,5 +1,5 @@
 /**
- * Algorithms for efficiently computing expressions a^b and (a^b)%m 
+ * Algorithms to efficiently compute expressions a^b and (a^b)%m 
  * 
  */
 #ifndef DRAGON_NUMBER_THEORY_BINARY_EXPONENTIATION_HPP
