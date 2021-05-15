@@ -13,7 +13,7 @@ namespace dragon {
  * in range [1,N] and information about whether number i 
  * in range [1,N] is prime or not.
  * 
- * @param T - T should be big enough to store largest prime number in range [1,N],
+ * @param T should be big enough to store largest prime number in range [1,N],
  */
 template <typename T = long long int> class Sieve {
 

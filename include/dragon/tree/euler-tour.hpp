@@ -11,7 +11,7 @@
  *              |
  *              4
  * Then basic euler tour of this tree will be as follows:     0,1,4,4,1,2,2,3,3,1
- * and repetitive euler tour of this tree will be as follows; 0,1,4,1,0,2,0,3,0
+ * and repetitive euler tour of this tree will be as follows: 0,1,4,1,0,2,0,3,0
  */
 #ifndef DRAGON_TREE_EULER_TOUR_HPP
 #define DRAGON_TREE_EULER_TOUR_HPP
@@ -24,9 +24,9 @@ namespace dragon {
 enum class EulerTourStyle { basic, repetitive };
 
 /**
- * @param TreeT - should be a template class produced by dragon::Tree<ValueT,EdgeValueT> template
- * @param style -
- * @returns - std::vector<typename TreeT::SizeType> object containing euler tour of the provided tree
+ * @param TreeT should be a template class produced by dragon::Tree<ValueT,EdgeValueT> template
+ * @param style
+ * @returns std::vector<typename TreeT::SizeType> object containing euler tour of the provided tree
  */
 template <typename TreeT>
 auto euler_tour(TreeT& tree, EulerTourStyle style = EulerTourStyle::basic) {

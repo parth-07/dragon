@@ -5,6 +5,13 @@
 
 namespace dragon {
 
+/**
+ * Disjoint Set Union data structure implemented as disjoint forest of trees,
+ * with union by rank and path compression heuristics to improve runtime 
+ * complexity. 
+ * 
+ * @param ValueT type of data
+ */
 template<typename ValueT>
 class DisjointSetUnion {
 public:
@@ -39,6 +46,9 @@ private:
   AssociativeContainer<ValueType, SizeType> m_identifier;
 };
 
+/**
+ * Create new set containing one element with given value
+ */
 template<typename ValueT>
 void DisjointSetUnion<ValueT>::make_set(const ValueType& value) {
   SizeType value_identifier = m_identifier.size();
@@ -68,6 +78,9 @@ typename DisjointSetUnion<ValueT>::SizeType DisjointSetUnion<ValueT>::find_repre
   return m_parent[u_i];
 }
 
+/**
+ * Join sets containing elements u and v
+ */
 template<typename ValueT>
 void DisjointSetUnion<ValueT>::join(const ValueType& u, const ValueType& v) {
   auto u_i = find_representative(m_identifier[u]);
@@ -77,6 +90,10 @@ void DisjointSetUnion<ValueT>::join(const ValueType& u, const ValueType& v) {
   }
 }
 
+/**
+ * @returns true if u and v belong to the same set, otherwise false.
+ * 
+ */
 template<typename ValueT>
 bool DisjointSetUnion<ValueT>::in_same_set(const ValueType& u, const ValueType& v) {
   return find_representative(m_identifier[u]) == find_representative(m_identifier[v]);
