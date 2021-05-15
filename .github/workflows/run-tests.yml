@@ -24,6 +24,7 @@ jobs:
           git checkout v2.x
           cmake -Bbuild -H. -DBUILD_TESTING=OFF
           sudo cmake --build build/ --target install
+          pwd
 
       - name: check pwd
         run: pwd
