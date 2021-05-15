@@ -26,7 +26,12 @@ jobs:
           sudo cmake --build build/ --target install
           pwd
 
-      - name: Check cmake version
-        run: cmake --version
+      - name: Build dragon and run tests
+        run: |
+          mkdir build; cd build
+          cmake ../
+          make
+          ctest -j4
+
 
 
