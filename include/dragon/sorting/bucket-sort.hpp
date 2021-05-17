@@ -9,12 +9,12 @@
 namespace dragon 
 {
 /**
- * Sorts the range [first, last] in place in linear time while mainting 
+ * Sorts the range [first, last) in place in linear time while mainting 
  * relative order of equivalent elements.
  * Elements of the range should be uniformally distributed in range [0,1],
  * 
- * @param first - range begin iterator
- * @param last - range end iterator
+ * @param first range begin iterator
+ * @param last range end iterator
  */
 template<typename ForwardIterator>
 constexpr void bucket_sort(ForwardIterator first, ForwardIterator last) noexcept {
