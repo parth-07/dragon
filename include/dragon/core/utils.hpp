@@ -14,6 +14,14 @@ template <typename T> constexpr int msb_pos(const T& val) {
   }
   return -1;
 }
+
+template<typename T>
+struct Identity {
+  T operator()(T val) {
+    return val;
+  }
+};
+
 } // namespace details
 } // namespace dragon
 
