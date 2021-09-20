@@ -1,4 +1,4 @@
-#include "dragon/number-theory/linear-diophantine-equation.hpp"
+#include "dragon/maths/linear-diophantine-equation.hpp"
 #include <iostream>
 
 using std::cin;

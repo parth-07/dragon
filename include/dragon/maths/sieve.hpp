@@ -2,8 +2,8 @@
  * Good old Sieve of eratosthenes implementation 
  * Time complexity: O(Nlg(lg(N))
  */
-#ifndef DRAGON_NUMBER_THEORY_SIEVE_HPP
-#define DRAGON_NUMBER_THEORY_SIEVE_HPP
+#ifndef DRAGON_MATHS_SIEVE_HPP
+#define DRAGON_MATHS_SIEVE_HPP
 #include <bits/stdc++.h>
 
 namespace dragon {

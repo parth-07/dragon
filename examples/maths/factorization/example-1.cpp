@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dragon/number-theory/factorization.hpp"
+#include "dragon/maths/factorization.hpp"
 
 using std::cout;
 

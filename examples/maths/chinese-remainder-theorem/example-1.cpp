@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include "dragon/number-theory/chinese-remainder-theorem.hpp"
+#include "dragon/maths/chinese-remainder-theorem.hpp"
 
 using namespace std;
 

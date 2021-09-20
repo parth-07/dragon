@@ -1,5 +1,5 @@
 #include "catch2/catch.hpp"
-#include "dragon/number-theory/binary-exponentiation.hpp"
+#include "dragon/maths/binary-exponentiation.hpp"
 
 TEST_CASE("binary-exponentiation", "[binary-exponentiation]") {
   int a = 4, b = 5;

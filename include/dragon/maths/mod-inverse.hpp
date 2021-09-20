@@ -1,10 +1,10 @@
 /**
  * Algorithms to efficiently compute mod inverse
  */
-#ifndef DRAGON_NUMBER_THEORY_MOD_INVERSE_HPP
-#define DRAGON_NUMBER_THEORY_MOD_INVERSE_HPP
-#include "dragon/number-theory/binary-exponentiation.hpp"
-#include "dragon/number-theory/extended-euclid-gcd.hpp"
+#ifndef DRAGON_MATHS_MOD_INVERSE_HPP
+#define DRAGON_MATHS_MOD_INVERSE_HPP
+#include "dragon/maths/binary-exponentiation.hpp"
+#include "dragon/maths/extended-euclid-gcd.hpp"
 #include <iostream>
 
 namespace dragon {

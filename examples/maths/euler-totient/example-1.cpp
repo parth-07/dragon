@@ -1,5 +1,5 @@
 #include<iostream>
-#include "dragon/number-theory/euler-totient.hpp"
+#include "dragon/maths/euler-totient.hpp"
 
 using namespace std;
 

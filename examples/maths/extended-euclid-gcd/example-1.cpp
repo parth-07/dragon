@@ -1,4 +1,4 @@
-#include "dragon/number-theory/extended-euclid-gcd.hpp"
+#include "dragon/maths/extended-euclid-gcd.hpp"
 #include <iostream>
 
 using std::cin;

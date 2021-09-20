@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "dragon/number-theory/binary-exponentiation.hpp"
+#include "dragon/maths/binary-exponentiation.hpp"
 
 using std::cin;
 using std::cout;

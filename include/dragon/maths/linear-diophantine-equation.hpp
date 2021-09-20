@@ -6,10 +6,10 @@
  * if solutions exists ,an passed variables x and y will contain 1 such solution
  * If solution don't exist, function return false
  */
-#ifndef DRAGON_NUMBER_THEORY_LINEAR_DIOPHANTINE_EQUATION_HPP
-#define DRAGON_NUMBER_THEORY_LINEAR_DIOPHANTINE_EQUATION_HPP
+#ifndef DRAGON_MATHS_LINEAR_DIOPHANTINE_EQUATION_HPP
+#define DRAGON_MATHS_LINEAR_DIOPHANTINE_EQUATION_HPP
 
-#include "dragon/number-theory/extended-euclid-gcd.hpp"
+#include "dragon/maths/extended-euclid-gcd.hpp"
 #include <bits/stdc++.h>
 
 namespace dragon {

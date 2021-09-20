@@ -1,5 +1,5 @@
 #include<iostream>
-#include "dragon/number-theory/sieve.hpp"
+#include "dragon/maths/sieve.hpp"
 
 using namespace std;
 
