@@ -1,5 +1,5 @@
+find_package(Catch2 REQUIRED PATHS ${CATCH_PATH})
 add_library(main OBJECT main.cpp)
-
 include(Catch)
 
 set(items algos core ds graph number-theory sorting tree)
