@@ -29,7 +29,7 @@ jobs:
       - name: Build dragon and run tests
         run: |
           mkdir build; cd build
-          cmake ../
+          cmake ../ -DDRAGON_BUILD_TESTS=ON
           make
           ctest -j4
 
