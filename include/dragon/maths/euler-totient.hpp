@@ -3,8 +3,8 @@
  * or of range of numbers from 1 to N,
  *
  */
-#ifndef DRAGON_NUMBER_THEORY_EULER_TOTIENT_CPP
-#define DRAGON_NUMBER_THEORY_EULER_TOTIENT_CPP
+#ifndef DRAGON_MATHS_EULER_TOTIENT_CPP
+#define DRAGON_MATHS_EULER_TOTIENT_CPP
 #include <iostream>
 #include <vector>
 

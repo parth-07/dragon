@@ -1,4 +1,4 @@
-#include "dragon/number-theory/mod-inverse.hpp"
+#include "dragon/maths/mod-inverse.hpp"
 #include <iostream>
 
 using std::cin;

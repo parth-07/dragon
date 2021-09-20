@@ -1,4 +1,4 @@
-#include "dragon/number-theory/factorization.hpp"
+#include "dragon/maths/factorization.hpp"
 #include "catch2/catch.hpp"
 #include <iostream>
 

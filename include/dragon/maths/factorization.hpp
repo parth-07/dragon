@@ -7,7 +7,8 @@ namespace dragon
 {
 /**
  * Computes prime factorization of a number in O(sqrt(N)).
- * @returns vector containing prime factorization 
+ * 
+ * @returns sequence containing prime factorization 
  * of the number in non-descending order.
  */
 template<typename T>

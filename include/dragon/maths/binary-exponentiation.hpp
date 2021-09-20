@@ -2,14 +2,15 @@
  * Algorithms to efficiently compute expressions a^b and (a^b)%m 
  * 
  */
-#ifndef DRAGON_NUMBER_THEORY_BINARY_EXPONENTIATION_HPP
-#define DRAGON_NUMBER_THEORY_BINARY_EXPONENTIATION_HPP
+#ifndef DRAGON_MATHS_BINARY_EXPONENTIATION_HPP
+#define DRAGON_MATHS_BINARY_EXPONENTIATION_HPP
 
 #include <bits/stdc++.h>
 namespace dragon {
 
 /**
  * Computes (a^b)%m in logarithmic time.
+ *
  */
 template <typename T>
 inline constexpr T binary_exponentiation(T a, T b, T m) noexcept {
