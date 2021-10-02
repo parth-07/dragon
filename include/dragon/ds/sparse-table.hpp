@@ -9,15 +9,15 @@ namespace dragon {
  * Query function should be associative and commutative.
  * Initial building of sparse table takes NlgN time.
  * For idempotent queries, see SparseTableIdempotent.
- * 
+ *
  * @param T type of data
  * @param BinaryFunctor query functor class
  */
 template <typename T, typename BinaryFunctor> class SparseTable {
 
 public:
-  using QueryReturnType =
-      decltype(BinaryFunctor()(std::declval<T>(), std::declval<T>()));
+  using QueryReturnType = decltype(
+      BinaryFunctor()(std::declval<T>(), std::declval<T>()));
   using SourceValueType = T;
   using QueryFunctorType = BinaryFunctor;
 
@@ -40,17 +40,17 @@ public:
   virtual ~SparseTable() = default;
 
   /**
-   * `identity_value` can only be specified during object construction and cannot 
-   * be modified.
-   * `identity_value` is a value that always satisfies, query(a, identity_value) = a
-   * @param identity_value 
+   * `identity_value` can only be specified during object construction and
+   * cannot be modified. `identity_value` is a value that always satisfies,
+   * query(a, identity_value) = a
+   * @param identity_value
    */
   SparseTable(SourceValueType identity_value)
       : m_identity_value(identity_value) {}
 
   /**
    * Constructs sparse table from iterator range [first, last).
-   * @param identity_value 
+   * @param identity_value
    * @param first begin iterator
    * @param last end iterator
    */
@@ -82,16 +82,15 @@ public:
   // Computes the query for interval [l, r]
   auto query(SizeType l, SizeType r) const;
 
-  // Reset the object 
+  // Reset the object
   void clear();
-  
+
   // Compute query on values (a, b)
   virtual QueryReturnType query_function(SourceValueType a,
                                          SourceValueType b) const;
-  
+
   // Compute query on values (a, identity_value)
   virtual QueryReturnType query_function(SourceValueType a) const;
-
 
 protected:
   static constexpr SizeType one = static_cast<SizeType>(1);
@@ -107,8 +106,7 @@ template <typename T, typename BinaryFunctor>
 template <typename ForwardIterator>
 SparseTable<T, BinaryFunctor>::SparseTable(SourceValueType identity_value,
                                            ForwardIterator first,
-                                           ForwardIterator last
-                                      )
+                                           ForwardIterator last)
     : m_identity_value(identity_value) {
   build(first, last);
 }
@@ -181,7 +179,7 @@ auto SparseTable<T, BinaryFunctor>::query(SizeType l, SizeType r) const {
   return res;
 }
 
-template<typename T, typename BinaryFunctor>
+template <typename T, typename BinaryFunctor>
 void SparseTable<T, BinaryFunctor>::clear() {
   m_table.clear();
 }

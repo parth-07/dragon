@@ -8,10 +8,10 @@ namespace dragon {
 /**
  * `Graph` is an efficient, easy to use generic implementation of the basic
  * graph data structure.
- * 
+ *
  * @param ValueT type of value of graph nodes.
  * @param EdgeValueT type of weight of graph edges.
- * 
+ *
  * @note `Graph` do not support multiple edges between the same nodes.
  */
 template <typename ValueT, typename EdgeValueT = int> class Graph {
@@ -69,10 +69,10 @@ public:
 
   /**
    * Adds a weighted directed edge from node `u` to `v` (`u` -> `v`),
-   * 
+   *
    * If an edge already exists from node `u` to node `v`, then the edge weight
    * is updated.
-   * 
+   *
    * @param u first node of the edge.
    * @param v second node of the edge.
    * @param weight weight of the edge.
@@ -81,10 +81,10 @@ public:
 
   /**
    * Adds a weighted undirected edge between node `u` and `v`.
-   * 
-   * If an undirected edge already exists between nodes `u` and `v`, then the edge
-   * weight is updated.
-   * 
+   *
+   * If an undirected edge already exists between nodes `u` and `v`, then the
+   * edge weight is updated.
+   *
    * @param u first node of the edge.
    * @param v second node of the edge.
    * @param weight weight of the edge.
@@ -94,16 +94,16 @@ public:
 
   /**
    * Remove a directed edge from node `u` to `v`.
-   * 
+   *
    * Does nothing if no directed edge exist from node `u` to `v`.
-   * 
+   *
    * @param u_i index of the first node
    * @param v_i index of the second node
    */
   void remove_directed_edge(SizeType u_i, SizeType v_i);
   /**
    * Remove an undirected edge between nodes `u` and `v`.
-   * 
+   *
    * Does nothing if no undirected edge exist between nodes `u` and `v`.
    */
   void remove_undirected_edge(SizeType u_i, SizeType v_i);
@@ -112,7 +112,7 @@ public:
   void reset_color();
 
   /// Returns the number of nodes in the graph.
-  auto size() const;  
+  auto size() const;
 
   /// Returns the index of the root node.
   auto root() const;
@@ -137,7 +137,7 @@ public:
     AdjacencyStructureType edges;
     Color color = Color::white;
     SizeType parent = npos, depth = npos;
-  
+
   private:
     const SizeType m_index;
   };

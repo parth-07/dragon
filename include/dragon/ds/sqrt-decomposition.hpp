@@ -88,8 +88,8 @@ void SqrtDecomposition<ValueT, BinaryFunctor>::build(ForwardIterator first,
       std::ceil(std::sqrt(static_cast<long double>(m_source.size()))));
   m_blocks.resize(m_block_size, m_identity_value);
   for (SizeType i = 0; i < m_source.size(); ++i) {
-    m_blocks[i / m_block_size] =
-        m_query_functor(m_blocks[i / m_block_size], m_source[i]);
+    m_blocks[i / m_block_size] = m_query_functor(m_blocks[i / m_block_size],
+                                                 m_source[i]);
   }
 }
 

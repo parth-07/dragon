@@ -3,15 +3,15 @@
  */
 #ifndef DRAGON_MATHS_MOD_INVERSE_HPP
 #define DRAGON_MATHS_MOD_INVERSE_HPP
+#include <iostream>
 #include "dragon/maths/binary-exponentiation.hpp"
 #include "dragon/maths/extended-euclid-gcd.hpp"
-#include <iostream>
 
 namespace dragon {
 
 /**
  * Computes mod inverse of `a` wrt `m`.
- * 
+ *
  */
 template <typename T>
 constexpr T mod_inverse_using_extended_euclid(T a, T m) noexcept {

@@ -7,41 +7,44 @@
 #include <vector>
 
 namespace dragon {
-template<class ForwardIterator>
-auto longest_increasing_subsequence_length(ForwardIterator first,ForwardIterator last);
+template <class ForwardIterator>
+auto longest_increasing_subsequence_length(ForwardIterator first,
+                                           ForwardIterator last);
 
-template<class Container>
+template <class Container>
 auto longest_increasing_subsequence_length(const Container& container);
 
 /**
  * Compute length of strictly increasing subsequence.
- * 
+ *
  * @param container sequence container
  * @return length of longest strictly increasing subsequence
- * 
+ *
  */
-template<class Container>
+template <class Container>
 auto longest_increasing_subsequence_length(const Container& container) {
-  return longest_increasing_subsequence_length(container.begin(),container.end());
+  return longest_increasing_subsequence_length(container.begin(),
+                                               container.end());
 }
 
 /**
  * Compute length of strictly increasing subsequence.
- * 
+ *
  * @param first iterator pointing to beginning of the sequence
  * @param last iterator pointing to one past the end of the sequence
  * @return length of longest strictly increasing subsequence
- * 
+ *
  */
 template <class ForwardIterator>
-auto longest_increasing_subsequence_length(ForwardIterator first,ForwardIterator last) {
-  using ValueType = typename std::iterator_traits<ForwardIterator>::value_type;  //NOLINT
+auto longest_increasing_subsequence_length(ForwardIterator first,
+                                           ForwardIterator last) {
+  using ValueType = typename std::iterator_traits<
+      ForwardIterator>::value_type; // NOLINT
   using SizeType = std::size_t;
 
-  SizeType sz = std::distance(first,last);
-  std::vector<ValueType> tails(
-      sz, std::numeric_limits<ValueType>::max());
-  for (auto source_it=first;source_it!=last;++source_it) {
+  SizeType sz = std::distance(first, last);
+  std::vector<ValueType> tails(sz, std::numeric_limits<ValueType>::max());
+  for (auto source_it = first; source_it != last; ++source_it) {
     auto iter = lower_bound(tails.begin(), tails.end(), *source_it);
     *iter = *source_it;
   }

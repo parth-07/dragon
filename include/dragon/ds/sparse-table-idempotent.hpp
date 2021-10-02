@@ -18,9 +18,10 @@ class SparseTableIdempotent : public SparseTable<T, BinaryFunctor> {
 public:
   using typename SparseTable<T, BinaryFunctor>::SourceValueType;
   using typename SparseTable<T, BinaryFunctor>::SizeType;
-  using typename SparseTable<T,BinaryFunctor>::QueryReturnType;
+  using typename SparseTable<T, BinaryFunctor>::QueryReturnType;
+
 public:
-  //Special member functions
+  // Special member functions
   SparseTableIdempotent() = default;
   SparseTableIdempotent(const SparseTableIdempotent&) = default;
   SparseTableIdempotent& operator=(const SparseTableIdempotent&) = default;
@@ -55,8 +56,7 @@ public:
    * Builds sparse table from container
    * @param container
    */
-  template <typename Container>
-  void build(const Container&);
+  template <typename Container> void build(const Container&);
 
   // Computes query on interval [l, r]
   auto query(SizeType l, SizeType r) const;
@@ -94,8 +94,8 @@ SparseTableIdempotent<T, BinaryFunctor>::SparseTableIdempotent(
 template <typename T, typename BinaryFunctor>
 template <typename Container>
 void SparseTableIdempotent<T, BinaryFunctor>::build(
-                                                    const Container& container) {
-  build(std::begin(container),std::end(container));
+    const Container& container) {
+  build(std::begin(container), std::end(container));
 }
 
 template <typename T, typename BinaryFunctor>
@@ -107,21 +107,25 @@ void SparseTableIdempotent<T, BinaryFunctor>::build(ForwardIterator first,
 }
 
 template <typename T, typename BinaryFunctor>
-typename SparseTableIdempotent<T,BinaryFunctor>::QueryReturnType SparseTableIdempotent<T, BinaryFunctor>::query_function(
+typename SparseTableIdempotent<T, BinaryFunctor>::QueryReturnType
+SparseTableIdempotent<T, BinaryFunctor>::query_function(
     SourceValueType a, SourceValueType b) const {
   return this->m_query_functor(a, b);
 }
 
 template <typename T, typename BinaryFunctor>
-typename SparseTableIdempotent<T,BinaryFunctor>::QueryReturnType SparseTableIdempotent<T, BinaryFunctor>::query_function(
+typename SparseTableIdempotent<T, BinaryFunctor>::QueryReturnType
+SparseTableIdempotent<T, BinaryFunctor>::query_function(
     SourceValueType a) const {
   return this->m_query_functor(a, a);
 }
 
-template<typename T, typename BinaryFunctor>
-auto SparseTableIdempotent<T,BinaryFunctor>::query(SizeType l,SizeType r) const {
-  SizeType j = lg[r-l+1];
-  return query_function(this->m_table[l][j],this->m_table[r-((this->one)<<j)+1][j]);
+template <typename T, typename BinaryFunctor>
+auto SparseTableIdempotent<T, BinaryFunctor>::query(SizeType l,
+                                                    SizeType r) const {
+  SizeType j = lg[r - l + 1];
+  return query_function(this->m_table[l][j],
+                        this->m_table[r - ((this->one) << j) + 1][j]);
 }
 
 template <typename T, typename BinaryFunctor>

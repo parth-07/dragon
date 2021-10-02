@@ -1,33 +1,35 @@
 /**
- * Easy to use and efficient data structure to find 
- * longest common ancestor of any pair of nodes in the 
+ * Easy to use and efficient data structure to find
+ * longest common ancestor of any pair of nodes in the
  * provided tree.
- * 
+ *
  * Time complexity:
  *  building - O(NlgN)
  *  query - O(1)
  *  Here N is number of nodes in the tree.
- *  
+ *
  */
 #ifndef DRAGON_TREE_LOWEST_COMMON_ANCESTOR_HPP
 #define DRAGON_TREE_LOWEST_COMMON_ANCESTOR_HPP
 
-#include "dragon/ds/sparse-table-idempotent.hpp"
-#include "dragon/tree/euler-tour.hpp"
-#include "dragon/tree/tree.hpp"
 #include <iostream>
 #include <utility>
 #include <vector>
+#include "dragon/ds/sparse-table-idempotent.hpp"
+#include "dragon/tree/euler-tour.hpp"
+#include "dragon/tree/tree.hpp"
 
 namespace dragon {
-  /**
-   * @param TreeT - should be template class produced by dragon::Tree<ValueT,EdgeValueT> template
-   */
+/**
+ * @param TreeT - should be template class produced by
+ * dragon::Tree<ValueT,EdgeValueT> template
+ */
 template <typename TreeT> class LowestCommonAncestor {
 public:
   using SizeType = typename TreeT::SizeType;
   // For consistency with STL
   using size_type = SizeType;
+
 private:
   template <typename T> using Sequence = std::vector<T>;
 
@@ -88,7 +90,7 @@ template <typename TreeT> void LowestCommonAncestor<TreeT>::build(TreeT& tree) {
 }
 
 /**
- * 
+ *
  */
 template <typename TreeT>
 typename LowestCommonAncestor<TreeT>::SizeType
@@ -126,8 +128,7 @@ void LowestCommonAncestor<TreeT>::refresh_depth_base(TreeT& tree,
   u.color_for_impl = TreeT::Color::black;
 }
 
-template<typename TreeT>
-void LowestCommonAncestor<TreeT>::clear() {
+template <typename TreeT> void LowestCommonAncestor<TreeT>::clear() {
   m_tour.clear();
   m_first_seen.clear();
   m_depth.clear();

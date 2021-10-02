@@ -1,10 +1,10 @@
 #ifndef DRAGON_GRAPH_SHORTEST_PATH_HPP
 #define DRAGON_GRAPH_SHORTEST_PATH_HPP
-#include "dragon/graph/graph.hpp"
 #include <limits>
 #include <set>
 #include <utility>
 #include <vector>
+#include "dragon/graph/graph.hpp"
 
 namespace dragon {
 template <typename GraphT>

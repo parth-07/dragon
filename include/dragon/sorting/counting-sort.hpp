@@ -1,10 +1,10 @@
 #ifndef DRAGON_SORTING_COUNTING_SORT_HPP
 #define DRAGON_SORTING_COUNTING_SORT_HPP
 
-#include "dragon/core/utils.hpp"
 #include <algorithm>
 #include <iterator>
 #include <vector>
+#include "dragon/core/utils.hpp"
 
 namespace dragon {
 /**
@@ -70,8 +70,8 @@ void counting_sort(
   std::vector<KeyType> comparison_keys(std::distance(first, last));
   std::transform(first, last, comparison_keys.begin(), extract_key);
 
-  auto min_and_max_iter =
-      std::minmax_element(comparison_keys.begin(), comparison_keys.end());
+  auto min_and_max_iter = std::minmax_element(comparison_keys.begin(),
+                                              comparison_keys.end());
   min_value = *(min_and_max_iter.first);
   max_value = *(min_and_max_iter.second);
 

@@ -3,15 +3,15 @@
 #include <bits/stdc++.h>
 namespace dragon {
 /**
- * Computes solution to the equation and assigns solution 
+ * Computes solution to the equation and assigns solution
  * inplace to the x and y arguments
- * 
+ *
  * ```
  * a*x + b*y = gcd(a, b)
  * ```
- * 
+ *
  * @return gcd(a, b)
- * 
+ *
  */
 template <typename T, typename U>
 constexpr T gcd(T a, T b, U& x, U& y) noexcept {

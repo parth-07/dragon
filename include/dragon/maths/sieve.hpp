@@ -1,5 +1,5 @@
 /**
- * Good old Sieve of eratosthenes implementation 
+ * Good old Sieve of eratosthenes implementation
  * Time complexity: O(Nlg(lg(N))
  */
 #ifndef DRAGON_MATHS_SIEVE_HPP
@@ -10,9 +10,9 @@ namespace dragon {
 
 /**
  * Uses sieve of eratosthenes algorithm to compute prime numbers
- * in range [1,N] and information about whether number i 
+ * in range [1,N] and information about whether number i
  * in range [1,N] is prime or not.
- * 
+ *
  * @param T should be big enough to store largest prime number in range [1,N],
  */
 template <typename T = long long int> class Sieve {
@@ -25,7 +25,7 @@ public:
   using ValueType = T;
 
 public:
-//Special member functions declared as default
+  // Special member functions declared as default
   Sieve() = default;
   Sieve(const Sieve&) = default;
   Sieve(Sieve&&) noexcept = default;
@@ -45,7 +45,7 @@ private:
   SizeType m_scan_limit;
 };
 /**
- * Compute primes and is_prime members to provide information about 
+ * Compute primes and is_prime members to provide information about
  * primes in range [1,scan_limit]
  */
 template <typename T> Sieve<T>::Sieve(SizeType scan_limit) {
@@ -53,7 +53,7 @@ template <typename T> Sieve<T>::Sieve(SizeType scan_limit) {
 }
 
 /**
- * Compute primes and is_prime members to provide information about 
+ * Compute primes and is_prime members to provide information about
  * primes in range [1, scan_limit].
  */
 template <typename T> void Sieve<T>::build(SizeType scan_limit) {

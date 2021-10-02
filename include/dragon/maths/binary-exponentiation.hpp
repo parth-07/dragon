@@ -1,6 +1,6 @@
 /**
- * Algorithms to efficiently compute expressions a^b and (a^b)%m 
- * 
+ * Algorithms to efficiently compute expressions a^b and (a^b)%m
+ *
  */
 #ifndef DRAGON_MATHS_BINARY_EXPONENTIATION_HPP
 #define DRAGON_MATHS_BINARY_EXPONENTIATION_HPP
