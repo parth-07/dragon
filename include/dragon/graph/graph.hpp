@@ -133,6 +133,7 @@ public:
     ~Node() = default;
 
   public:
+    SizeType index() const { return m_index; }
     ValueType value;
     AdjacencyStructureType edges;
     Color color = Color::white;
