@@ -1,5 +1,5 @@
 /**
- * Algorithm to solve given set of congruence equations 
+ * Algorithm to solve given set of congruence equations
  * in one variable, that is, Solve:
  * x*a1 = 1 (mod m1)
  * x*a2 = 1 (mod m2)

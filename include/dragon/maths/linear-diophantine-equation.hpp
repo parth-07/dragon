@@ -1,5 +1,5 @@
 /**
- * Algorithm for efficiently computing solutions for linear equation in 2 
+ * Algorithm for efficiently computing solutions for linear equation in 2
  * variables, for example, given equations
  * a*x + b*y = c, then
  * find_linear_diophantine_equation_solution(a,b,c,x,y) will return true
@@ -9,17 +9,17 @@
 #ifndef DRAGON_MATHS_LINEAR_DIOPHANTINE_EQUATION_HPP
 #define DRAGON_MATHS_LINEAR_DIOPHANTINE_EQUATION_HPP
 
-#include "dragon/maths/extended-euclid-gcd.hpp"
 #include <bits/stdc++.h>
+#include "dragon/maths/extended-euclid-gcd.hpp"
 
 namespace dragon {
 using std::pair;
 
 /**
- * Compute solution for linear equation in 2 variables and 
- * assigns solution, if it exists, inplace to the x and y 
+ * Compute solution for linear equation in 2 variables and
+ * assigns solution, if it exists, inplace to the x and y
  * function arguments
- * 
+ *
  * ```
  * a*x + b*y = c
  * ```

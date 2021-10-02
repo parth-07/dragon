@@ -9,17 +9,14 @@ template <typename T> constexpr int msb_pos(const T& val) {
   constexpr T one = static_cast<T>(1);
 
   for (int i = total_bits - 1; i >= 0; --i) {
-    if (val & (one<<i))
+    if (val & (one << i))
       return i;
   }
   return -1;
 }
 
-template<typename T>
-struct Identity {
-  T operator()(T val) {
-    return val;
-  }
+template <typename T> struct Identity {
+  T operator()(T val) { return val; }
 };
 
 } // namespace details

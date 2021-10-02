@@ -52,10 +52,8 @@ public:
     Node(SizeType index, ValueType p_value)
         : m_index(index), value(p_value) {} // NOLINT
 
-    SizeType index() const {
-      return m_index;
-    }
-    
+    SizeType index() const { return m_index; }
+
     ValueType value;
     AdjacencyStructureType edges;
     SizeType parent = npos, depth = npos, distance = npos;
@@ -83,7 +81,6 @@ public:
   /// Initialise tree with size and root.
   Tree(SizeType sz = 0, SizeType root = 0) { build(sz, root); };
 
-  
   /// Returns reference to the ith node of the tree.
   auto& operator[](SizeType i) { return m_nodes[i]; }
   auto& operator[](SizeType i) const { return m_nodes[i]; }
@@ -98,26 +95,25 @@ public:
   const_iterator end() const { return m_nodes.end(); }
   const_iterator cend() const { return m_nodes.cend(); }
 
-
   /**
    * Adds a weighted directed edge from node `u` to node `v` (`u` -> `v`).
-   * 
+   *
    * If an edge already exists from node `u` to node `v`, then the edge weight
    * is updated.
-   * 
+   *
    * @param u first node for the edge.
    * @param v second node for the edge.
    * @param weight weight for the edge.
    */
   void add_directed_edge(Node& u, Node& v, EdgeValueType weight = 1);
   void add_directed_edge(SizeType u_i, SizeType v_i, EdgeValueType weight = 1);
-  
+
   /**
    * Adds a weighted undirected edge between nodes `u` and `v`.
-   * 
+   *
    * If an undirected edge already exists between nodes `u` and `v`, then the
    * edge weight is updated.
-   * 
+   *
    * @param u first node of the edge
    * @param v second node of the edge
    * @param weight weight of the edge.
@@ -128,7 +124,7 @@ public:
 
   /**
    * Removes a directed edge from node `u` to `v`.
-   * 
+   *
    * Does nothing if no directed edge exists from node `u` to `v`.
    */
   void remove_directed_edge(SizeType u_i, SizeType v_i);
@@ -136,7 +132,7 @@ public:
 
   /**
    * Removes an undirected edge between nodes `u` and `v`.
-   * 
+   *
    * Does nothing if no undirected edge exists between nodes `u` and `v`.
    */
   void remove_undirected_edge(SizeType u_i, SizeType v_i);
@@ -154,12 +150,12 @@ public:
   /**
    * Builds a tree with `sz` number of nodes and node with index `root` as the
    * root node.
-   * 
+   *
    * @param sz number of nodes that the tree should contain.
    * @param root index of the root node.
-   * 
-   * @Note As of now root value can only be changed while constructing or building the
-   * tree.
+   *
+   * @Note As of now root value can only be changed while constructing or
+   * building the tree.
    */
   void build(SizeType sz, SizeType root = 0);
 
@@ -175,7 +171,6 @@ public:
 private:
   NodeSequenceType m_nodes;
   SizeType m_root{};
-
 };
 
 template <typename ValueT, typename EdgeValueT>
@@ -229,7 +224,7 @@ template <typename ValueT, typename EdgeValueT>
 void Tree<ValueT, EdgeValueT>::build(SizeType sz, SizeType root) {
   clear();
   m_root = root;
-  for (auto i=0U; i<sz; ++i) {
+  for (auto i = 0U; i < sz; ++i) {
     m_nodes.emplace_back(i);
   }
 }

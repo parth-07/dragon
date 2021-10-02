@@ -46,7 +46,7 @@ public:
   EulerTotient& operator=(const EulerTotient&) = default;
   EulerTotient& operator=(EulerTotient&&) noexcept = default;
   ~EulerTotient() = default;
-   
+
   explicit EulerTotient(SizeType scan_limit) { build(scan_limit); }
 
   auto operator[](SizeType num) const noexcept { return m_totients[num]; }
