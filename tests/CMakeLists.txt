@@ -2,7 +2,7 @@ find_package(Catch2 REQUIRED PATHS ${CATCH_PATH})
 add_library(main OBJECT main.cpp)
 include(Catch)
 
-set(items algos core ds graph maths sorting tree)
+set(items algos core ds graph maths sorting string tree)
 
 foreach(item IN LISTS items)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${item})
